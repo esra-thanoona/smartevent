@@ -1,0 +1,15 @@
+{% extends 'admintemp/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+            <div>
+               <center> <h4>Notification</h4></center>
+            </div>
+                    <form method="POST" action="#" >
+                        {% csrf_token %}
+                        {{form|crispy}}
+                        <input  type="submit" class="btn btn-outline-dark" value="add"/>
+                         <a href="{% url 'notview'  %}" class="btn btn-outline-dark">view</a>
+                    </form>
+
+
+{% endblock %}
