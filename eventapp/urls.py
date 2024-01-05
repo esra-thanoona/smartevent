@@ -27,4 +27,10 @@ urlpatterns=[
     path("eventupdate/<int:id>/", views.event_update, name="eventupdate"),
     path("not", views.notification, name="not"),
     path("notview", views.not_view, name="notview"),
+    path("stunotview", views.student_not_view, name="stunotview"),
+    path("teachnotview", views.teach_not_view, name="teachnotview"),
+    path("stufeedback", views.stu_feedback, name="stufeedback"),
+    path("viewfeedback", views.feedback_view, name="viewfeedback"),
+    path("adminfeedback", views.admin_feedback_view, name="adminfeedback"),
+
 ]

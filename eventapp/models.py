@@ -1,5 +1,7 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.db.models import DO_NOTHING
+
 
 # Create your models here.
 class Login(AbstractUser):
@@ -45,6 +47,9 @@ class Club(models.Model):
     staff_incharge=models.ForeignKey(Teacher,on_delete=models.CASCADE)
     image=models.FileField(upload_to='images/')
 
+    def __str__(self):
+        return self.club_name
+
 
 
 
@@ -61,3 +66,10 @@ class Event(models.Model):
 class Notification(models.Model):
     date=models.DateField()
     description=models.CharField()
+
+class Feedback(models.Model):
+    user=models.ForeignKey(Login,on_delete=DO_NOTHING)
+    date=models.DateField(auto_now=True)
+    feedback=models.TextField()
+    reply=models.TextField(blank=True,null=True)
+

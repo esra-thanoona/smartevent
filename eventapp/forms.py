@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 
-from eventapp.models import Login, Teacher, Student, Club, Event, Notification
+from eventapp.models import Login, Teacher, Student, Club, Event, Notification, Feedback
 
 
 class LoginRegister(UserCreationForm):
@@ -45,7 +45,7 @@ class EventForm(forms.ModelForm):
     class Meta:
         model = Event
         fields = '__all__'
-        exclude = ('club',)
+        # exclude = ('club',)
 
 class NotificationForm(forms.ModelForm):
     date=forms.DateField(widget=DateInput)
@@ -53,3 +53,9 @@ class NotificationForm(forms.ModelForm):
     class Meta:
         model=Notification
         fields='__all__'
+
+class FeedbackForm(forms.ModelForm):
+    class Meta:
+        model=Feedback
+        fields='__all__'
+        exclude=('reply','user',)

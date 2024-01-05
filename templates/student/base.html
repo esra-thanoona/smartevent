@@ -410,8 +410,9 @@
           <li class="nav-item nav-category">Forms and Datas</li>
           <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href=" {% static '#form-elements' %} " aria-expanded="false" aria-controls="form-elements">
-              <i class="menu-icon mdi mdi-card-text-outline"></i>
-              <span class="menu-title">Form elements</span>
+<!--              <i class="menu-icon mdi mdi-card-text-outline"></i>-->
+                 <span> <a href="{% url 'stunotview'  %}" class="btn btn-outline-dark">view notification</a></span></center>
+<!--              <span class="menu-title">Form elements</span>-->
               <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="form-elements">
@@ -422,8 +423,9 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href=" {% static '#charts' %} " aria-expanded="false" aria-controls="charts">
-              <i class="menu-icon mdi mdi-chart-line"></i>
-              <span class="menu-title">Charts</span>
+<!--              <i class="menu-icon mdi mdi-chart-line"></i>-->
+                 <span> <a href="{% url 'stufeedback'  %}" class="btn btn-outline-dark">feedback</a></span></center>
+<!--              <span class="menu-title">Charts</span>-->
               <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="charts">

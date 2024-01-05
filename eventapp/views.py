@@ -2,8 +2,8 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 
-from eventapp.forms import LoginRegister, TeacherForm, StudentForm, ClubForm, EventForm, NotificationForm
-from eventapp.models import Student, Teacher, Club, Event, Notification
+from eventapp.forms import LoginRegister, TeacherForm, StudentForm, ClubForm, EventForm, NotificationForm, FeedbackForm
+from eventapp.models import Student, Teacher, Club, Event, Notification, Feedback
 
 
 # Create your views here.
@@ -153,10 +153,18 @@ def club_update(request,id):
 
 def teach_club_view(request):
     data=Club.objects.all()
-    return render(request,"teacher/viewclub.html",{"data":data})
+    l=request.user.id
+    a=Teacher.objects.get(user_1_id=l)
+    u=Club.objects.filter(staff_incharge=a)
+    print(l)
+    print(a.id)
+    print(u)
+
+    return render(request,"teacher/viewclub.html",{"data":data,"u":u})
 
 
 def create_event(request,id):
+
     data = Club.objects.get(id=id)
     form = EventForm()
     if request.method == "POST":
@@ -180,8 +188,8 @@ def event_view(request):
     print(t.id)
 
     data_club = Club.objects.filter(staff_incharge=t)
-    # print(data_club)
-    return render(request,"teacher/eventview.html",{"data":data, "data_club":data_club})
+    print(data_club)
+    return render(request,"teacher/eventview.html",{'data_and_club': zip(data,data_club)})
 
 
 
@@ -207,3 +215,44 @@ def notification(request):
 def not_view(request):
     data=Notification.objects.all()
     return render(request,"admintemp/notview.html",{"data":data})
+
+
+def student_not_view(request):
+    data=Notification.objects.all()
+    return render(request,"student/notview.html",{"data":data})
+
+
+def teach_not_view(request):
+    data=Notification.objects.all()
+    return render(request,"teacher/notview.html",{"data":data})
+
+
+def stu_feedback(request):
+    form=FeedbackForm()
+    user_1=request.user
+
+    if request.method=='POST':
+        form=FeedbackForm(request.POST)
+        if form.is_valid():
+
+            data=form.save(commit=False)
+            data.user=user_1
+            data.save()
+    return render(request,"student/feedback.html",{'form':form})
+
+
+def feedback_view(request):
+    u=request.user.id
+    print(u)
+
+    data=Feedback.objects.filter(user=u)
+
+    return render(request,"student/viewfeedback.html",{'data':data})
+
+
+def admin_feedback_view(request):
+    data=Feedback.objects.all()
+    return render(request,"admintemp/feedbackview.html",{'data':data})
+
+
+
