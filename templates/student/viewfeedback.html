@@ -5,13 +5,11 @@
 <table class="table">
       <thead class="table table-striped">
       <tr>
-           <th scope="col">SI NO</th>
+          <th scope="col">SI NO</th>
           <th scope="col">date</th>
           <th scope="col">Feedback</th>
           <th scope="col">Reply</th>
 
-<!--          <th scope="col">Delete</th>-->
-<!--          <th scope="col">Update</th>-->
       </tr>
       </thead>
 
@@ -21,7 +19,16 @@
           <td>{{forloop.counter}}</td>
           <td>{{i.date}}</td>
           <td>{{i.feedback}}</td>
-           <td>{{i.reply}}</td>
+           {% if i.reply == None %}
+            <td>
+                 no reply
+           </td>
+
+               {% else %}
+           <td> {{i.reply}}</td>
+
+               {% endif %}
+
 
 <!--           <td>-->
 <!--               <form action="{% url 'clubdelt' i.id  %}" method="POST">-->

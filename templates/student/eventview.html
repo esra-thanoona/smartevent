@@ -1,0 +1,40 @@
+{% extends 'templates/student/base.html' %}
+{% block content %}
+<table class="table">
+      <thead class="table table-striped">
+      <tr>
+          <th scope="col">sl No</th>
+          <th scope="col">event_name </th>
+          <th scope="col">description </th>
+          <th scope="col">event_date</th>
+          <th scope="col"> start_time</th>
+          <th scope="col"> end_time </th>
+          <th scope="col"> club </th>
+          <th scope="col"> Staff incharge </th>
+
+
+      </tr>
+      </thead>
+      <tbody>
+      {% for i in data %}
+
+        <tr>
+          <td>{{forloop.counter}}</td>
+          <td>{{i.event_name}}</td>
+          <td>{{i.description}}</td>
+            <td>{{i.event_date}}</td>
+            <td>{{i.start_time}}</td>
+            <td>{{i.end_time}}</td>
+             <td>{{i.club}}</td>
+          <td>{{i.club.staff_incharge}}</td>
+
+
+
+
+
+      </tbody>
+      {% endfor %}
+ </table>
+
+
+{% endblock %}

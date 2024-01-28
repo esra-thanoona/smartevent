@@ -424,7 +424,8 @@
           <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href=" {% static '#charts' %} " aria-expanded="false" aria-controls="charts">
 <!--              <i class="menu-icon mdi mdi-chart-line"></i>-->
-                 <span> <a href="{% url 'stufeedback'  %}" class="btn btn-outline-dark">feedback</a></span></center>
+                 <span> <a href="{% url 'stufeedback'  %}" class="btn btn-outline-dark">feedback</a></span></center><br><br>
+                 <span> <a href="{% url 'stueventview'  %}" class="btn btn-outline-dark">view events</a></span>
 <!--              <span class="menu-title">Charts</span>-->
               <i class="menu-arrow"></i>
             </a>
@@ -548,9 +549,9 @@
                       </div>
                     </div> 
                     <div class="row">
-                      <div class="col-lg-8 d-flex flex-column">
+                      <div class="col-lg-13 d-flex flex-column">
                         <div class="row flex-grow">
-                          <div class="col-12 col-lg-4 col-lg-12 grid-margin stretch-card">
+                          <div class="col-12 col-lg-17 col-lg-12 grid-margin stretch-card">
                             <div class="card card-rounded">
                               <div class="card-body">
                                   {% block content %}

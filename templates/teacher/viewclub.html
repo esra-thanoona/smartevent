@@ -1,8 +1,7 @@
 {% extends 'teacher/base.html' %}
 
 {% block content %}
-{{request.user}}
-{{u}}
+
   <div class="row">
     {% for i in data %}
       <div class="col-md-6">
@@ -16,8 +15,15 @@
                 <p class="card-text">{{ forloop.counter }}</p>
                 <h5 class="card-title">{{ i.club_name }}</h5>
 
-                <p class="card-text"><small class="text-body-secondary">{{ i.staff_incharge }}</small></p>
+                <p class="card-text"><small class="text-body-secondary">{{ i.staff_incharge}}</small></p>
+                {% if i.staff_incharge.user_1 == request.user %}
                 <a href="{% url 'event' i.id %}" class="btn btn-outline-dark">create event</a>
+                 {% else %}
+            <td>
+                  <h6 style="color:red">you cant create event</h6>
+            </td>
+
+    {% endif %}
               </div>
             </div>
           </div>

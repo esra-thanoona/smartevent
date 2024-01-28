@@ -1,0 +1,65 @@
+{% extends 'templates/teacher/base.html' %}
+{% block content %}
+
+<table class="table">
+      <thead class="table table-striped">
+      <tr>
+          <th scope="col">sl No</th>
+          <th scope="col">event_name </th>
+          <th scope="col">description </th>
+          <th scope="col">event_date</th>
+          <th scope="col"> start_time</th>
+          <th scope="col"> end_time </th>
+          <th scope="col"> club </th>
+          <th scope="col"> Staff incharge </th>
+
+<!--          {{data_club}}-->
+          <th scope="col">Update</th>
+           <th scope="col">Delete</th>
+
+
+      </tr>
+      </thead>
+      <tbody>
+       {% for i in data %}
+        <tr>
+          <td>{{forloop.counter}}</td>
+          <td>{{i.event_name}}</td>
+          <td>{{i.description}}</td>
+            <td>{{i.event_date}}</td>
+            <td>{{i.start_time}}</td>
+            <td>{{i.end_time}}</td>
+             <td>{{i.club}} </td>
+             <td>{{i.club.staff_incharge.user_1}} </td>
+
+
+
+
+            {% if i.club.staff_incharge.user_1 == request.user %}
+        <td>
+            <a href="{% url 'eventupdate' i.id %}" class="btn btn-outline-dark">Update</a>
+        </td>
+    {% else %}
+            <td>
+                  <h6 style="color:red">Not available</h6>
+            </td>
+
+    {% endif %}
+              {% if i.club.staff_incharge.user_1 == request.user %}
+             <td>
+             <form action="{% url 'eventdelt' i.id  %}" method="POST">
+                   {% csrf_token %}
+                    <button type="submit" class="btn btn-outline-dark">Delete</button>
+               </form>
+            </td>
+             {% else %}
+             <td>
+                  <h6 style="color:red">Not available</h6>
+            </td>
+              {% endif %}
+        </tr>
+
+
+{% endfor %}
+    </table>
+{% endblock %}
